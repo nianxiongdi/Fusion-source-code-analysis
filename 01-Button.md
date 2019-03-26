@@ -128,7 +128,7 @@ fusion源码分析之button-01
                 {...tagAttrs}
                 dir={rtl ? 'rtl' : undefined} // 这个属性暂时不知道啥以西
                 onMouseUp={this.onMouseUp}  // 鼠标在组件上触发
-                ref={this.buttonRefHandler} // dom
+                ref={this.buttonRefHandler} //  //这里当前的dom挂在在当前组件上 
                 role="button" //添加无障碍
             >
                 {clonedChildren}  // 子组件
