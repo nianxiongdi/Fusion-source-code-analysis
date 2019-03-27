@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>React 实例</title>
+<script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+
+<div id="example"></div>
+<script type="text/babel">
+// Children component
+class Children extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = {
+      name: this.context.name
+    };
+  }
+
+  render() {
+    return(
+      <ul>
+        <li>
+          {`child context is: ${this.context.age}`} // child context is: 18
+        </li>
+        <li>
+          {`state from context: ${this.state.name}`} // state from context: mars
+        </li>
+        <li>
+          {`print age: ${this.context.print(this.context.age)}`} // print age: 18
+        </li>
+      </ul>
+    );
+  }
+}
+
+Children.contextTypes = {
+  name: React.PropTypes.string,
+  age: React.PropTypes.number,
+  print: React.PropTypes.func
+};
+
+
+// Parent component
+class Parent extends React.Component {
+  getChildContext() {
+    return {
+      name: 'mars',
+      age: 18
+    };
+  }
+
+  render() {
+    return (
+      <div>
+        {`from App component: ${this.context.name}`} 
+        <div>
+          {this.props.children}
+        </div>
+      </div>
+    );
+  }
+}
+
+Parent.contextTypes = {
+  name: React.PropTypes.string
+};
+
+Parent.childContextTypes = {
+  age: React.PropTypes.number,
+  name: React.PropTypes.string
+};
+
+// App component
+class App extends React.Component {
+  getChildContext() {
+    return { 
+        name: 'mars',
+        print: (m) => m
+     };
+  }
+
+  render() {
+    return (
+      <Parent>
+        <Children />
+      </Parent>
+    );
+  }
+}
+
+App.childContextTypes = {
+  name: React.PropTypes.string,
+  print: React.PropTypes.func
+};
+
+ReactDOM.render(<App />, document.getElementById('app'));
+</script>
+
+</body>
+</html>
