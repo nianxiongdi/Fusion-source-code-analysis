@@ -185,7 +185,7 @@ render() {
                 className={`${prefix}checkbox-input`}
             />
         );
-
+ 
         // disable 无状态操作
         if (!disabled) {
             childInput = this.getStateElement(childInput);
@@ -231,43 +231,4 @@ render() {
         );
     }
 ```
-
-3. 渲染，这里的操作比较复杂：
-    * 先通过this.props获取用户所传的属性
-    ```js
-        const {
-            prefix,
-            className,
-            size,
-            children,
-            rtl,
-            ...others
-        } = this.props;
-    ```
-
-    * 获取所有的class的name列表
-    ```js
-     const groupCls = classNames({
-            [`${prefix}btn-group`]: true,
-            [className]: className,
-        });
-    ```
-
-    * 如果存在子元素，直接创建并返回
-    ```js
-       const cloneChildren = Children.map(children, child => {
-            if (child) {
-                return React.cloneElement(child, {
-                    size: size,
-                });
-            }
-        });
-    ```
-
-    * 最后一步，进行渲染
-    ```html
-        <div {...others} className={groupCls}>
-            {cloneChildren}
-        </div>
-    ```
-
+ 
