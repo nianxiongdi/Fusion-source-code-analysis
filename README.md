@@ -15,3 +15,11 @@ How to write and design a component library
 * [7. 判断key是否在数组或对象中](./utils/object/07-isInObj.js) 
 * [8. 属性的过滤](./utils/object/08-filterAtt.js ) 
 * [9. 属性前缀的过滤](./utils/object/09-filterprefixAttr.js) 
+
+## guid
+* [tostring方法](./utils/guid/guid.js)
+
+## String
+
+* [字符串转化为驼峰式](./utils/string/01-strTo.js)
+* [驼峰式字符串转化为连字符写法](./utils/string/02-strTo.js)
