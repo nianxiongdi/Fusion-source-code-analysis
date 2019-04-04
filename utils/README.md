@@ -12,3 +12,14 @@
 * [8. 获取对象的类型](./object/08-filterAtt.js ) 
 * [9. 属性的过滤](./object/01-objType.js) 
 * [10. 属性前缀的过滤](./object/09-filterprefixAttr.js) 
+
+## guid
+* [tostring方法](./guid/guid.js)
+
+
+## String
+
+* [字符串转化为驼峰式](./string/01-strTo.js)
+* [驼峰式字符串转化为连字符写法](./string/02-strTo.js)
+
+

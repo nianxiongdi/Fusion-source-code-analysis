@@ -66,6 +66,4 @@ holdProps = ['name3']
 
 const filterlist = pickOthers(holdProps, props)
 console.log(filterlist) //{ name1: '逍遥生', name2: '飞剑侠' }
-
-
-
+ 
