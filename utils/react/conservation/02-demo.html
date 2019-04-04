@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>菜鸟教程 React 实例</title>
+<script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+
+<div id="example"></div>
+<script type="text/babel">
+class Item extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      prices: 1
+    }
+  }
+
+  handleChange(){
+    
+    const prices =800;
+    this.setState({
+      prices: price
+    })
+    //用传过来的changePrice属性(props)，是个函数，呼叫它把price交给父组件中的函数去处理
+    this.props.changePrice(price)
+  }
+
+  render() {
+    console.log(123);
+
+    const { prices } = this.state;
+        return (
+          <div>
+              <div onChange={this.handleChange.bind(this)}>
+              </div>
+             <p>{prices}</p>
+          </div>
+        )
+  }
+}
+
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {price: 0}
+  }
+  
+  //给子组件用来传price用的方法
+  changePrice(price){
+    this.setState({price: price})
+  }
+
+  render() {
+    return (
+      <div>
+        <Item changePrice={this.changePrice.bind(this)}/>
+        <p>{this.state.price}</p>
+      </div>
+    );
+  }
+}
+
+ 
+ 
+ReactDOM.render(
+  <App />,
+  document.getElementById('example')
+);
+</script>
+
+</body>
+</html>

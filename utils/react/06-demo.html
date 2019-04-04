@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>事件-获取子组件的属性</title>
+<script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+
+<div id="example"></div>
+<script type="text/babel">
+
+class Child extends React.Component{
+    
+    constructor(props){
+        super(props);
+        this.state={
+           name:'Child'
+        }
+    }    
+
+    render(){
+        return(
+            <div>
+                <button name={this.props.name}> {this.props.name}  -- text </button>
+            </div>
+        )
+    };
+};
+
+
+class App extends React.Component {
+    constructor(props){
+        super(props);
+        this.state={
+           name:'hhh'
+        }
+        this.handleKeyUp = this.handleKeyUp.bind(this);
+    };
+
+  handleKeyUp(event) {
+    console.log(event.target.name)
+    console.log(event.target.innerText)
+  }
+ 
+  render() {
+    return ( // 这里通过顶层绑定事件，通过冒泡事件传递，在通过event.target获取确定是哪一个子组件
+      <div onKeyUp={this.handleKeyUp} >
+            <Child name="child1" >child1</Child>
+            <Child name="child2" >child2</Child>
+            <Child name="child3" >child3</Child>
+      </div>
+    );
+  }
+}
+ 
+ReactDOM.render(
+  <App />,
+  document.getElementById('example')
+);
+</script>
+
+</body>
+</html>

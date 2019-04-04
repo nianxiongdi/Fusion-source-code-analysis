@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>菜鸟教程 React 实例</title>
+<script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+</head>
+<body>
+
+<div id="example"></div>
+<script type="text/babel">
+
+class Child extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={
+            name:'Andy',
+            age:31,
+            msg:"来自子类的消息"
+        }
+        
+    }
+
+    change=()=>{
+        console.log(this.props)
+        // console.log('child');
+        // console.log(this.state)
+        this.props.callback(this.state.msg,this.state.name,this.state.age);
+    }
+
+    
+    onChild =()=>{
+        console.log('onChild');
+    }
+
+    render(){
+        return(
+            <div>
+                <div>{this.props.name}</div>
+                <div>{this.props.age}</div>
+                <button onClick={this.change}>点击</button>
+            </div>
+        )
+    }
+}
+
+
+class App extends React.Component {
+    constructor(props){
+        super(props);
+        this.state={
+            msg:'父类的消息',
+            name:'John',
+            age:99
+        }
+    
+    };
+
+    getChild = (e)=>{
+        console.log(e)
+    }
+
+    callback=(msg,name,age)=>{
+
+        // console.log(this.props)
+        // setState方法,修改msg的值,值是由child里面传过来的
+        this.setState({msg});
+        this.setState({name});
+        this.setState({age});
+    }
+
+  render() {
+
+ 
+
+    return (
+      <div  >
+        <p> Message: &nbsp;&nbsp;{this.state.msg}</p>
+        <Child callback={this.callback} age={this.state.age} name={this.state.name} ref={ (e)=>{ console.log(e) } }></Child>
+      </div>
+    );
+  }
+}
+
+ 
+ 
+ReactDOM.render(
+  <App />,
+  document.getElementById('example')
+);
+</script>
+
+</body>
+</html>
