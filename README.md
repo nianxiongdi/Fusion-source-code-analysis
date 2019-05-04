@@ -23,3 +23,8 @@ How to write and design a component library
 
 * [字符串转化为驼峰式](./utils/string/01-strTo.js)
 * [驼峰式字符串转化为连字符写法](./utils/string/02-strTo.js)
+
+
+## React
+
+* [高阶组件](./utils/react/react HOC.md)
